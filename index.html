@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuzzFarmsAI Live Online Workshop | Self-Improving AI Living Sites</title>
+  <meta name="description" content="Join Ben Murray & Abhi Dwivedi on Monday, Nov 23 at 7:00 PM EST for a free live workshop revealing self-improving AI living sites with 2 free bonus tools." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Google Fonts: Anton (Display), Archivo (Sub-display & Script Accent), Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#07160d', // Deep emerald noir main canvas bg
+            pine: '#0d2417',   // Marquee ticker / footer / secondary card bg
+            moss: '#133320',   // Elevated card surfaces
+            cream: '#f6f4ea',  // Primary off-white text tone
+            volt: '#e2ff00',   // High-voltage electric yellow-lime accent
+          },
+          fontFamily: {
+            display: ['Anton', 'sans-serif'],
+            sub: ['Archivo', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Iconify Lucide Web Component -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- Google tag (gtag.js) / GA4 / Google Ads Tracking Template -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'AW-XXXXXXXXXX');
+  </script>
+
+  <style>
+    /* Reset & Core Rules */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #07160d;
+      color: #f6f4ea;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding-bottom: 76px;
+    }
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 0;
+      }
+    }
+    ::selection {
+      background: #e2ff00;
+      color: #07160d;
+    }
+
+    /* Typography Utilities */
+    .display {
+      font-family: 'Anton', sans-serif;
+      letter-spacing: -0.01em;
+      line-height: 0.86;
+      text-transform: uppercase;
+    }
+    .archivo-tight {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .script-accent {
+      font-family: 'Archivo', sans-serif;
+      font-style: italic;
+      font-weight: 800;
+    }
+
+    /* Subtle SVG Noise Texture Overlay */
+    .grain {
+      position: relative;
+    }
+    .grain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      z-index: 1;
+    }
+
+    /* Pill Buttons */
+    .pill-btn {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pill-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(226, 255, 0, 0.3);
+    }
+
+    /* Nav Link Animated Wipe */
+    .link-underline {
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.2s ease;
+    }
+    .link-underline::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 1.5px;
+      bottom: 0;
+      left: 0;
+      background-color: #e2ff00;
+      transition: width 0.25s ease-in-out;
+    }
+    .link-underline:hover {
+      color: #f6f4ea;
+    }
+    .link-underline:hover::after {
+      width: 100%;
+    }
+
+    /* Infinite Marquee */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    /* Interactive Services Rows */
+    .svc-row {
+      transition: background-color 0.28s ease, color 0.28s ease, transform 0.2s ease;
+    }
+    .svc-row:hover {
+      background-color: #e2ff00 !important;
+      color: #07160d !important;
+    }
+    .svc-row:hover .svc-num {
+      color: #07160d !important;
+    }
+    .svc-row:hover .svc-title {
+      color: #07160d !important;
+    }
+    .svc-row:hover .svc-tag {
+      background-color: transparent !important;
+      border-color: rgba(7, 22, 13, 0.4) !important;
+      color: #07160d !important;
+    }
+    .svc-row:hover .svc-arrow {
+      color: #07160d !important;
+      transform: translateX(6px);
+    }
+
+    /* Work / Bonus Cards */
+    .work-card {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+    .work-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(226, 255, 0, 0.35);
+    }
+    .work-card:hover .work-arrow-circle {
+      transform: scale(1.1) rotate(45deg);
+      background-color: #ffffff;
+      color: #07160d;
+    }
+    .work-arrow-circle {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+    }
+
+    /* Modals & Popups */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 13, 8, 0.88);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 200;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-box {
+      animation: modalFadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* FAQ accordion plus spin */
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-forest text-cream antialiased selection:bg-volt selection:text-forest">
+
+  <!-- TOP-BAR COMPLIANCE DISCLOSURE -->
+  <aside class="w-full bg-pine/90 border-b border-white/10 text-center py-2 px-4 text-[11px] md:text-[12px] text-cream/70 tracking-wide z-40 relative" aria-label="Affiliate disclosure banner">
+    <div class="max-w-[1320px] mx-auto flex flex-wrap items-center justify-center gap-1.5 md:gap-3">
+      <span class="inline-flex items-center gap-1.5 font-semibold text-volt">
+        <span class="w-1.5 h-1.5 rounded-full bg-volt animate-ping"></span>
+        OFFICIAL AFFILIATE PARTNER GUIDE
+      </span>
+      <span class="text-white/20 hidden sm:inline">|</span>
+      <span>BuzzFarmsAI Live Workshop · Monday, Nov 23 at 7:00 PM EST</span>
+      <span class="text-white/20 hidden sm:inline">|</span>
+      <span class="text-cream/50">PickOrAChoice.com is an independent review portal</span>
+    </div>
+  </aside>
+
+  <!-- 1. FIXED FLOATING PILL GLASS NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 pointer-events-none mt-9 md:mt-10 px-4 md:px-8">
+    <div class="max-w-[1320px] mx-auto">
+      <nav class="pointer-events-auto w-full border border-white/10 bg-forest/80 backdrop-blur-xl rounded-full px-4 py-2.5 md:px-6 md:py-3 flex items-center justify-between shadow-2xl transition-all" aria-label="Primary navigation">
+        
+        <!-- Brand Lockup -->
+        <a href="#overview" class="flex items-center gap-2.5 group">
+          <div class="w-7 h-7 rounded-full bg-volt flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(226,255,0,0.4)] group-hover:rotate-45 transition-transform duration-300">
+            <div class="w-2.5 h-2.5 bg-forest transform rotate-45"></div>
+          </div>
+          <span class="archivo-tight text-cream text-[15px] md:text-[16px] tracking-tight flex items-center">
+            PICKORACHOICE<span class="text-volt">.</span>
+          </span>
+        </a>
+
+        <!-- Center Menu Links -->
+        <div class="hidden lg:flex items-center gap-8 text-[13px] text-cream/70 font-medium">
+          <a href="#overview" class="link-underline">Overview</a>
+          <a href="#bonuses" class="link-underline">Bonuses</a>
+          <a href="#agenda" class="link-underline">Agenda</a>
+          <a href="#reviews" class="link-underline">Reviews</a>
+          <a href="#faq" class="link-underline">FAQ</a>
+        </div>
+
+        <!-- Right Header CTA Button -->
+        <div>
+          <a href="https://jvz7.com/c/3657033/456885" class="pill-btn inline-flex items-center gap-2 rounded-full bg-volt text-forest font-extrabold uppercase text-[12px] md:text-[13px] tracking-wider px-5 py-2.5 md:px-6 md:py-2.5 js-affiliate-cta" data-cta-location="nav_pill" target="_blank" rel="noopener sponsored">
+            <span>Save Your Seat</span>
+            <iconify-icon icon="lucide:arrow-up-right" class="text-base stroke-[2.5]"></iconify-icon>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 2. HERO SECTION -->
+  <section class="grain relative pt-32 md:pt-44 pb-20 md:pb-28 border-b border-white/10 overflow-hidden">
+    <!-- Soft Volt Radial Glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] md:w-[850px] h-[340px] md:h-[460px] bg-volt/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="max-w-[1320px] mx-auto px-5 md:px-8 relative z-10">
+      
+      <!-- Top Eyebrow Row -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+        <div class="flex items-center gap-3 text-[12px] md:text-[13px] text-cream/80 tracking-wide font-medium">
+          <span class="h-px w-8 bg-volt inline-block"></span>
+          <span>Independent Event Guide · Monday, Nov 23 at 7:00 PM EST</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-full border border-volt/30 bg-moss/60 text-cream/90 text-[11px] uppercase tracking-wider font-semibold inline-flex items-center gap-1.5 backdrop-blur-sm">
+            <iconify-icon icon="lucide:check-circle-2" class="text-volt text-xs"></iconify-icon>
+            Self-Improving Tech
+          </span>
+          <span class="px-3 py-1 rounded-full border border-volt/30 bg-moss/60 text-cream/90 text-[11px] uppercase tracking-wider font-semibold inline-flex items-center gap-1.5 backdrop-blur-sm">
+            <iconify-icon icon="lucide:check-circle-2" class="text-volt text-xs"></iconify-icon>
+            Real-Time Profit Tech
+          </span>
+        </div>
+      </div>
+
+      <!-- Signature H1 -->
+      <h1 class="display text-[clamp(3.1rem,11.5vw,10.2rem)] text-cream">
+        <div>SELF-IMPROVING</div>
+        <div class="flex items-baseline flex-wrap">
+          <span>AI</span>
+          <span class="script-accent text-volt" style="font-size:0.62em;text-transform:none;margin-left:0.14em;margin-right:0.12em;">living</span>
+          <span>SITES</span>
+        </div>
+        <div>BUILT LIVE<span class="text-volt">.</span></div>
+      </h1>
+
+      <!-- Split 12-Col Row Below -->
+      <div class="mt-12 border-t border-white/10 pt-10 grid grid-cols-1 md:grid-cols-12 items-end gap-10">
+        
+        <!-- Left 7 Cols: Lead Paragraph + Live Countdown Timer -->
+        <div class="md:col-span-7 flex flex-col gap-6">
+          <p class="archivo-tight text-[19px] md:text-[23px] text-cream/90 leading-snug font-normal md:font-medium">
+            Join AI creators <strong class="text-cream font-extrabold">Ben Murray &amp; Abhi Dwivedi</strong> for a free, one-time live workshop showing how beginners and agencies automate affiliate &amp; local client workflows without cold calling—powered by self-optimizing living sites.
+          </p>
+
+          <!-- Live Countdown Box -->
+          <div class="inline-flex flex-wrap items-center gap-3.5 bg-moss/70 border border-white/10 rounded-2xl px-5 py-3.5 backdrop-blur-sm w-fit" aria-label="Event countdown">
+            <div class="flex items-center gap-2 text-[12px] uppercase font-bold text-volt tracking-wider">
+              <iconify-icon icon="lucide:clock" class="text-sm"></iconify-icon>
+              <span>Broadcast Starts In:</span>
+            </div>
+            <div class="flex items-center gap-1.5 font-mono text-[14px] md:text-[15px] font-bold" id="countdownTimer">
+              <span class="bg-forest px-3 py-1.5 rounded-lg border border-white/10 text-cream" id="cd-hours">00h</span>
+              <span class="text-volt">:</span>
+              <span class="bg-forest px-3 py-1.5 rounded-lg border border-white/10 text-cream" id="cd-mins">00m</span>
+              <span class="text-volt">:</span>
+              <span class="bg-forest px-3 py-1.5 rounded-lg border border-white/10 text-cream" id="cd-secs">00s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Primary Pill CTA + Ghost Trigger -->
+        <div class="md:col-span-5 flex flex-col sm:flex-row md:flex-col lg:flex-row md:justify-end gap-3.5">
+          <a href="https://jvz7.com/c/3657033/456885" class="pill-btn inline-flex items-center justify-center gap-2.5 rounded-full bg-volt text-forest font-extrabold text-[14px] md:text-[15px] px-8 py-4 uppercase tracking-wider hover:bg-white hover:text-forest transition-all js-affiliate-cta shadow-[0_12px_28px_rgba(226,255,0,0.28)]" data-cta-location="hero_primary" target="_blank" rel="noopener sponsored">
+            <span>Save Your Free Seat</span>
+            <iconify-icon icon="lucide:arrow-up-right" class="text-lg stroke-[2.5]"></iconify-icon>
+          </a>
+          <button type="button" id="openModalManual" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 text-cream text-[13px] md:text-[14px] px-6 py-4 font-semibold hover:border-volt hover:text-volt transition-all bg-moss/30 backdrop-blur-sm">
+            <iconify-icon icon="lucide:sparkles" class="text-volt"></iconify-icon>
+            <span>Preview Free Bonuses</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Micro-Trust Line -->
+      <div class="mt-8 pt-6 border-t border-white/5 flex flex-wrap items-center gap-3 text-[12px] text-cream/55 font-medium">
+        <span class="flex items-center gap-1.5">
+          <iconify-icon icon="lucide:shield-check" class="text-volt text-sm"></iconify-icon>
+          100% Free Live Session
+        </span>
+        <span class="text-white/20">•</span>
+        <span>No Credit Card Required</span>
+        <span class="text-white/20">•</span>
+        <span>Includes 2 Free Bonus Tools for Live Registrants</span>
+        <span class="text-white/20">•</span>
+        <span>No Replay For Launch Bonus Offer</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. FULL-BLEED INFINITE KEYWORD MARQUEE -->
+  <div class="border-y border-white/10 bg-pine py-4 overflow-hidden marquee-container select-none" aria-hidden="true">
+    <div class="marquee-track text-[13px] md:text-[14px] font-extrabold uppercase tracking-widest text-cream/90">
+      <div class="flex items-center gap-8 px-4">
+        <span>SELF-IMPROVING TECH</span>
+        <span class="text-volt">✦</span>
+        <span>REAL-TIME PROFIT MODE</span>
+        <span class="text-volt">✦</span>
+        <span>LOCAL CLIENT BUTTER AI</span>
+        <span class="text-volt">✦</span>
+        <span>AFFILIATE ANALYZER</span>
+        <span class="text-volt">✦</span>
+        <span>NO COLD CALLING</span>
+        <span class="text-volt">✦</span>
+        <span>LIVE NOV 23 · 7 PM EST</span>
+        <span class="text-volt">✦</span>
+        <span>BEN MURRAY &amp; ABHI DWIVEDI</span>
+        <span class="text-volt">✦</span>
+      </div>
+      <!-- Duplicated for seamless loop -->
+      <div class="flex items-center gap-8 px-4">
+        <span>SELF-IMPROVING TECH</span>
+        <span class="text-volt">✦</span>
+        <span>REAL-TIME PROFIT MODE</span>
+        <span class="text-volt">✦</span>
+        <span>LOCAL CLIENT BUTTER AI</span>
+        <span class="text-volt">✦</span>
+        <span>AFFILIATE ANALYZER</span>
+        <span class="text-volt">✦</span>
+        <span>NO COLD CALLING</span>
+        <span class="text-volt">✦</span>
+        <span>LIVE NOV 23 · 7 PM EST</span>
+        <span class="text-volt">✦</span>
+        <span>BEN MURRAY &amp; ABHI DWIVEDI</span>
+        <span class="text-volt">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. OVERVIEW STATEMENT + 4-UP STAT ROW -->
+  <section id="overview" class="py-24 md:py-32">
+    <div class="max-w-[1320px] mx-auto px-5 md:px-8">
+      
+      <!-- 12-Col Split -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
+        
+        <!-- Left 3 Cols: Index Eyebrow & Host Note -->
+        <div class="md:col-span-3 flex flex-col justify-between">
+          <div>
+            <div class="text-volt font-mono text-[13px] tracking-wider font-semibold uppercase mb-3">
+              (Event Overview / 01)
+            </div>
+            <p class="text-cream/60 text-[13px] leading-relaxed">
+              Hosted by AI creators <strong class="text-cream font-semibold">Ben Murray &amp; Abhi Dwivedi</strong>. Built specifically for beginners and busy agencies wanting automated campaign infrastructure.
+            </p>
+          </div>
+          <div class="hidden md:block pt-8">
+            <div class="w-10 h-10 rounded-full border border-volt/30 flex items-center justify-center text-volt">
+              <iconify-icon icon="lucide:sparkles" class="text-lg"></iconify-icon>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 9 Cols: Large Statement -->
+        <div class="md:col-span-9">
+          <p class="archivo-tight text-[clamp(1.75rem,4.2vw,3.35rem)] leading-[1.08] text-cream">
+            "Watch living AI sites detect <span class="text-cream/35">real-time</span> buyer demand and <span class="script-accent text-volt italic">self-optimize</span> your affiliate and local agency campaigns automatically."
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 4-Up Counter Row -->
+      <div class="mt-16 md:mt-20 border-t border-white/10 pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div class="flex flex-col">
+          <div class="display text-[clamp(2.5rem,5.5vw,4.5rem)] text-cream">
+            100<span class="text-volt">%</span>
+          </div>
+          <div class="text-[13px] text-cream/70 uppercase tracking-wider font-semibold mt-1">
+            Free Live Workshop
+          </div>
+          <div class="text-[12px] text-cream/40 mt-1">Zero upfront cost or card required</div>
+        </div>
+
+        <div class="flex flex-col">
+          <div class="display text-[clamp(2.5rem,5.5vw,4.5rem)] text-cream">
+            2<span class="text-volt">+</span>
+          </div>
+          <div class="text-[13px] text-cream/70 uppercase tracking-wider font-semibold mt-1">
+            Free AI Bonus Tools
+          </div>
+          <div class="text-[12px] text-cream/40 mt-1">Unlocked instantly upon registration</div>
+        </div>
+
+        <div class="flex flex-col">
+          <div class="display text-[clamp(2.5rem,5.5vw,4.5rem)] text-cream">
+            <span class="text-volt">3</span>-Step
+          </div>
+          <div class="text-[13px] text-cream/70 uppercase tracking-wider font-semibold mt-1">
+            Local Agency System
+          </div>
+          <div class="text-[12px] text-cream/40 mt-1">Direct business matching framework</div>
+        </div>
+
+        <div class="flex flex-col">
+          <div class="display text-[clamp(2.5rem,5.5vw,4.5rem)] text-cream">
+            <span class="text-volt">0</span>
+          </div>
+          <div class="text-[13px] text-cream/70 uppercase tracking-wider font-semibold mt-1">
+            Cold Calls Required
+          </div>
+          <div class="text-[12px] text-cream/40 mt-1">Driven entirely by inbound buyer intent</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. FREE REGISTRATION BONUSES & HIGHLIGHTS GRID -->
+  <section id="bonuses" class="pb-24 md:pb-32">
+    <div class="max-w-[1320px] mx-auto px-5 md:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div>
+          <div class="text-volt font-mono text-[13px] tracking-wider font-semibold uppercase mb-2">
+            (Free Gifts Today / 02)
+          </div>
+          <h2 class="display text-[clamp(2.5rem,6vw,5.2rem)] text-cream">
+            INCLUDED <span class="text-cream/30">BONUSES</span>
+          </h2>
+        </div>
+        <p class="text-[14px] text-cream/70 max-w-md">
+          Complimentary software tools gifted by Ben Murray &amp; Abhi Dwivedi exclusively to registrants attending the Nov 23 live online broadcast.
+        </p>
+      </div>
+
+      <!-- 2-Col + 1 Wide Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        
+        <!-- Card 1: Local Client Butter AI -->
+        <div class="work-card group rounded-2xl bg-moss border border-white/10 p-6 md:p-8 flex flex-col justify-between overflow-hidden relative">
+          <!-- Subtle Tech Visual Banner (CSS/SVG) -->
+          <div class="w-full h-44 rounded-xl bg-forest/80 border border-white/10 p-4 mb-6 relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between text-[11px] text-cream/60 font-mono">
+              <span class="flex items-center gap-1.5 text-volt">
+                <span class="w-2 h-2 rounded-full bg-volt"></span>
+                ACTIVE RADAR SCANNER
+              </span>
+              <span>GEO_MODE: LOCAL</span>
+            </div>
+            <!-- Radar Mock SVG -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+              <svg width="220" height="220" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#e2ff00" stroke-width="0.5" stroke-dasharray="2 2" />
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#e2ff00" stroke-width="0.5" />
+                <circle cx="50" cy="50" r="15" fill="none" stroke="#e2ff00" stroke-width="0.5" />
+                <line x1="50" y1="5" x2="50" y2="95" stroke="#e2ff00" stroke-width="0.3" />
+                <line x1="5" y1="50" x2="95" y2="50" stroke="#e2ff00" stroke-width="0.3" />
+              </svg>
+            </div>
+            <div class="flex flex-wrap gap-2 relative z-10">
+              <span class="text-[11px] px-2.5 py-1 rounded-md bg-pine border border-volt/30 text-volt font-medium">✓ High-Intent Roofing Inquiry</span>
+              <span class="text-[11px] px-2.5 py-1 rounded-md bg-pine border border-white/10 text-cream/80 font-medium">✓ Dental SEO Demand Detected</span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-3">
+              <span class="text-[11px] font-mono uppercase tracking-widest text-volt font-semibold">Free Bonus #1 · No Cold Calling</span>
+              <a href="https://jvz7.com/c/3657033/456885" class="work-arrow-circle w-11 h-11 rounded-full bg-volt text-forest flex items-center justify-center shrink-0 js-affiliate-cta" data-cta-location="bonus_card_1" aria-label="Claim Local Client Butter AI" target="_blank" rel="noopener sponsored">
+                <iconify-icon icon="lucide:arrow-up-right" class="text-xl stroke-[2.5]"></iconify-icon>
+              </a>
+            </div>
+            <h3 class="archivo-tight text-[22px] md:text-[25px] text-cream mb-2 group-hover:text-volt transition-colors">
+              Local Client Butter AI
+            </h3>
+            <p class="text-cream/70 text-[14px] leading-relaxed">
+              Discovers local businesses actively looking to buy specific digital services right now, allowing you to match their exact demand smoothly and deliver results with zero cold calling.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: Million Dollar Affiliate Analyzer -->
+        <div class="work-card group rounded-2xl bg-moss border border-white/10 p-6 md:p-8 flex flex-col justify-between overflow-hidden relative">
+          <!-- Subtle Tech Visual Banner (CSS/SVG) -->
+          <div class="w-full h-44 rounded-xl bg-forest/80 border border-white/10 p-4 mb-6 relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between text-[11px] text-cream/60 font-mono">
+              <span class="flex items-center gap-1.5 text-volt">
+                <span class="w-2 h-2 rounded-full bg-volt"></span>
+                CAMPAIGN DIAGNOSTICS
+              </span>
+              <span>EPC_ENGINE: OPTIMIZED</span>
+            </div>
+            <!-- Diagnostics Graph Mock SVG -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-25">
+              <svg width="280" height="120" viewBox="0 0 280 120">
+                <path d="M10,90 Q70,75 120,40 T220,25 T270,10" fill="none" stroke="#e2ff00" stroke-width="2" />
+                <circle cx="120" cy="40" r="3" fill="#e2ff00" />
+                <circle cx="220" cy="25" r="3" fill="#e2ff00" />
+                <circle cx="270" cy="10" r="4" fill="#e2ff00" />
+              </svg>
+            </div>
+            <div class="flex flex-wrap gap-2 relative z-10">
+              <span class="text-[11px] px-2.5 py-1 rounded-md bg-pine border border-volt/30 text-volt font-medium">✓ Buyer Match Score: 98%</span>
+              <span class="text-[11px] px-2.5 py-1 rounded-md bg-pine border border-white/10 text-cream/80 font-medium">✓ Funnel Leak Pinpointed</span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-3">
+              <span class="text-[11px] font-mono uppercase tracking-widest text-volt font-semibold">Free Bonus #2 · Campaign Diagnostics</span>
+              <a href="https://jvz7.com/c/3657033/456885" class="work-arrow-circle w-11 h-11 rounded-full bg-volt text-forest flex items-center justify-center shrink-0 js-affiliate-cta" data-cta-location="bonus_card_2" aria-label="Claim Million Dollar Affiliate Analyzer" target="_blank" rel="noopener sponsored">
+                <iconify-icon icon="lucide:arrow-up-right" class="text-xl stroke-[2.5]"></iconify-icon>
+              </a>
+            </div>
+            <h3 class="archivo-tight text-[22px] md:text-[25px] text-cream mb-2 group-hover:text-volt transition-colors">
+              Million Dollar Affiliate Analyzer
+            </h3>
+            <p class="text-cream/70 text-[14px] leading-relaxed">
+              Uses proven affiliate marketing diagnostics to analyze campaigns, uncover conversion friction, and deliver clear, actionable step-by-step optimization recommendations.
+            </p>
+          </div>
+        </div>
+
+        <!-- Wide Card 3: Live Broadcast & Attendee Giveaways -->
+        <div class="md:col-span-2 rounded-2xl bg-pine border border-volt/25 p-8 md:p-10 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+          <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-volt/10 border border-volt/30 text-volt text-[12px] font-mono uppercase tracking-wider mb-4">
+              <iconify-icon icon="lucide:zap" class="text-sm"></iconify-icon>
+              <span>Monday, Nov 23 · 7:00 PM EST</span>
+            </div>
+            <h3 class="archivo-tight text-[24px] md:text-[30px] text-cream leading-snug mb-3">
+              Live Launch Broadcast &amp; Attendee Giveaways
+            </h3>
+            <p class="text-cream/75 text-[14px] md:text-[15px] leading-relaxed mb-4">
+              Experience the live step-by-step demonstration of Quick Win mode and self-improving living sites. Attendees present during the live broadcast become eligible for free software license giveaways and official launch prizes announced during the session.
+            </p>
+            <div class="flex flex-wrap items-center gap-3 text-[12px] text-cream/60">
+              <span class="flex items-center gap-1.5"><iconify-icon icon="lucide:check-circle-2" class="text-volt"></iconify-icon> Real-Time Demo</span>
+              <span class="flex items-center gap-1.5"><iconify-icon icon="lucide:check-circle-2" class="text-volt"></iconify-icon> Free Software Copies</span>
+              <span class="flex items-center gap-1.5"><iconify-icon icon="lucide:check-circle-2" class="text-volt"></iconify-icon> Live Host Q&amp;A</span>
+            </div>
+          </div>
+
+          <div class="shrink-0 w-full md:w-auto">
+            <a href="https://jvz7.com/c/3657033/456885" class="pill-btn w-full md:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-volt text-forest font-extrabold text-[14px] px-8 py-4 uppercase tracking-wider hover:bg-white transition-all js-affiliate-cta" data-cta-location="bonus_wide_card" target="_blank" rel="noopener sponsored">
+              <span>Claim Free Seat &amp; Bonuses</span>
+              <iconify-icon icon="lucide:arrow-up-right" class="text-lg stroke-[2.5]"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. INTERACTIVE HOVER-FILL TRAINING AGENDA -->
+  <section id="agenda" class="border-t border-white/10 py-24 md:py-32">
+    <div class="max-w-[1320px] mx-auto px-5 md:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div>
+          <div class="text-volt font-mono text-[13px] tracking-wider font-semibold uppercase mb-2">
+            (Live Agenda / 03)
+          </div>
+          <h2 class="display text-[clamp(2.5rem,6vw,5.2rem)] text-cream">
+            INSIDE THE <span class="text-cream/30">SESSION</span>
+          </h2>
+        </div>
+        <p class="text-[14px] text-cream/70 max-w-md">
+          Hover over each module to explore the step-by-step masterclass curriculum designed by Ben Murray and Abhi Dwivedi.
+        </p>
+      </div>
+
+      <!-- 4 Full-Width Hover-Fill Rows -->
+      <div class="border-t border-white/10 divide-y divide-white/10">
+        
+        <!-- Row 01 -->
+        <a href="https://jvz7.com/c/3657033/456885" class="svc-row group block py-8 md:py-10 px-4 md:px-6 rounded-xl transition-all js-affiliate-cta" data-cta-location="agenda_row_1" target="_blank" rel="noopener sponsored">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4 md:gap-6">
+            <div class="md:col-span-1 svc-num font-mono text-[16px] md:text-[18px] text-volt font-bold">
+              01
+            </div>
+            <div class="md:col-span-5 svc-title archivo-tight text-[22px] md:text-[27px] text-cream">
+              Real-Time Profit Mode
+            </div>
+            <div class="md:col-span-5 flex flex-wrap gap-2">
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Quick Win</span>
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Live Buyer Intent</span>
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Fast Launch</span>
+            </div>
+            <div class="md:col-span-1 flex justify-end">
+              <iconify-icon icon="lucide:arrow-right" class="svc-arrow text-2xl text-cream/40 transition-transform duration-200"></iconify-icon>
+            </div>
+          </div>
+        </a>
+
+        <!-- Row 02 -->
+        <a href="https://jvz7.com/c/3657033/456885" class="svc-row group block py-8 md:py-10 px-4 md:px-6 rounded-xl transition-all js-affiliate-cta" data-cta-location="agenda_row_2" target="_blank" rel="noopener sponsored">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4 md:gap-6">
+            <div class="md:col-span-1 svc-num font-mono text-[16px] md:text-[18px] text-volt font-bold">
+              02
+            </div>
+            <div class="md:col-span-5 svc-title archivo-tight text-[22px] md:text-[27px] text-cream">
+              Self-Improving AI Sites
+            </div>
+            <div class="md:col-span-5 flex flex-wrap gap-2">
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Auto-Content</span>
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Google &amp; AI Search</span>
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Continuous Learning</span>
+            </div>
+            <div class="md:col-span-1 flex justify-end">
+              <iconify-icon icon="lucide:arrow-right" class="svc-arrow text-2xl text-cream/40 transition-transform duration-200"></iconify-icon>
+            </div>
+          </div>
+        </a>
+
+        <!-- Row 03 -->
+        <a href="https://jvz7.com/c/3657033/456885" class="svc-row group block py-8 md:py-10 px-4 md:px-6 rounded-xl transition-all js-affiliate-cta" data-cta-location="agenda_row_3" target="_blank" rel="noopener sponsored">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4 md:gap-6">
+            <div class="md:col-span-1 svc-num font-mono text-[16px] md:text-[18px] text-volt font-bold">
+              03
+            </div>
+            <div class="md:col-span-5 svc-title archivo-tight text-[22px] md:text-[27px] text-cream">
+              3-Step Local Agency System
+            </div>
+            <div class="md:col-span-5 flex flex-wrap gap-2">
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Local Business Sites</span>
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Client Delivery</span>
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Zero Cold Calling</span>
+            </div>
+            <div class="md:col-span-1 flex justify-end">
+              <iconify-icon icon="lucide:arrow-right" class="svc-arrow text-2xl text-cream/40 transition-transform duration-200"></iconify-icon>
+            </div>
+          </div>
+        </a>
+
+        <!-- Row 04 -->
+        <a href="https://jvz7.com/c/3657033/456885" class="svc-row group block py-8 md:py-10 px-4 md:px-6 rounded-xl transition-all js-affiliate-cta" data-cta-location="agenda_row_4" target="_blank" rel="noopener sponsored">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4 md:gap-6">
+            <div class="md:col-span-1 svc-num font-mono text-[16px] md:text-[18px] text-volt font-bold">
+              04
+            </div>
+            <div class="md:col-span-5 svc-title archivo-tight text-[22px] md:text-[27px] text-cream">
+              Live Q&amp;A &amp; Bonus Activation
+            </div>
+            <div class="md:col-span-5 flex flex-wrap gap-2">
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">2 Free AI Tools</span>
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Live Giveaways</span>
+              <span class="svc-tag text-[11px] md:text-[12px] px-3 py-1 rounded-full border border-white/15 bg-moss/40 text-cream/80 font-medium">Launch Access</span>
+            </div>
+            <div class="md:col-span-1 flex justify-end">
+              <iconify-icon icon="lucide:arrow-right" class="svc-arrow text-2xl text-cream/40 transition-transform duration-200"></iconify-icon>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. EARLY TESTER FEEDBACK & FAQ -->
+  <section id="reviews" class="border-t border-white/10 py-24 md:py-32">
+    <div class="max-w-[1320px] mx-auto px-5 md:px-8">
+      
+      <!-- Reviews Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div>
+          <div class="text-volt font-mono text-[13px] tracking-wider font-semibold uppercase mb-2">
+            (Early Feedback / 04)
+          </div>
+          <h2 class="display text-[clamp(2.5rem,6vw,5.2rem)] text-cream">
+            EARLY <span class="text-cream/30">REVIEWS</span>
+          </h2>
+        </div>
+        <p class="text-[14px] text-cream/70 max-w-md">
+          Verified comments and initial impressions from early testers who evaluated the BuzzFarmsAI workflow before the public live launch.
+        </p>
+      </div>
+
+      <!-- 3 Safe Review Cards (NO Dollar Claims / Compliant) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        
+        <!-- Review 1 -->
+        <div class="bg-moss rounded-2xl border border-white/10 p-7 flex flex-col justify-between hover:border-volt/30 transition-all">
+          <p class="italic text-cream/90 text-[14px] md:text-[15px] leading-relaxed mb-6">
+            "The quick win mode is great, and the advanced agent sites are handcrafted with quality content and campaigns that bring in qualified leads daily without the usual stress or complicated setup."
+          </p>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="font-bold text-cream text-[14px]">Stephen P.</span>
+            <span class="text-[12px] font-mono text-volt uppercase">Early Tester</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-moss rounded-2xl border border-white/10 p-7 flex flex-col justify-between hover:border-volt/30 transition-all">
+          <p class="italic text-cream/90 text-[14px] md:text-[15px] leading-relaxed mb-6">
+            "I always got overwhelmed trying to build sites while taking care of two young kids. BuzzFarmsAI learned the offer, produced targeted content, and made the whole campaign process truly manageable."
+          </p>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="font-bold text-cream text-[14px]">Amy J.</span>
+            <span class="text-[12px] font-mono text-volt uppercase">Niche Creator</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-moss rounded-2xl border border-white/10 p-7 flex flex-col justify-between hover:border-volt/30 transition-all">
+          <p class="italic text-cream/90 text-[14px] md:text-[15px] leading-relaxed mb-6">
+            "Traffic discovery was always my biggest bottleneck. From finding live search opportunities to creating video and long-form assets for Google and AI search, it streamlined our entire publishing routine."
+          </p>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="font-bold text-cream text-[14px]">Trevor Z.</span>
+            <span class="text-[12px] font-mono text-volt uppercase">Content &amp; Traffic</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Results Disclaimer -->
+      <div class="mt-8 border-l-2 border-volt/60 pl-4 py-1 text-[12px] text-cream/60 leading-relaxed max-w-4xl">
+        <strong>Results Disclaimer:</strong> Individual results vary widely based on individual effort, industry niche, market demand, and business experience. The quotes above reflect genuine early tester experiences shared with the vendor and are not representative of guaranteed earnings or automated traffic.
+      </div>
+
+      <!-- FAQ ACCORDION -->
+      <div id="faq" class="mt-24 pt-20 border-t border-white/10">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-12">
+            <div class="text-volt font-mono text-[13px] tracking-wider font-semibold uppercase mb-2">
+              (Common Questions)
+            </div>
+            <h2 class="display text-[clamp(2.2rem,5vw,4.2rem)] text-cream">
+              FREQUENTLY <span class="text-cream/30">ASKED</span>
+            </h2>
+          </div>
+
+          <div class="space-y-4">
+            
+            <!-- Item 1 -->
+            <div class="faq-item rounded-xl bg-moss/70 border border-white/10 overflow-hidden transition-all">
+              <button type="button" class="faq-btn w-full p-6 text-left flex items-center justify-between gap-4 font-semibold text-[16px] text-cream hover:text-volt transition-colors" aria-expanded="false">
+                <span>Is the Monday, Nov 23 workshop really free?</span>
+                <iconify-icon icon="lucide:plus" class="faq-icon text-volt text-xl shrink-0 transition-transform duration-200"></iconify-icon>
+              </button>
+              <div class="faq-answer hidden px-6 pb-6 text-cream/70 text-[14px] leading-relaxed border-t border-white/5 pt-4">
+                Yes, 100%. Attending the live online session on Monday, November 23 at 7:00 PM EST is completely free. In addition, reserving your seat through this page secures your free access to the two exclusive AI bonus tools (Local Client Butter AI &amp; Million Dollar Affiliate Analyzer) provided directly by the hosts.
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="faq-item rounded-xl bg-moss/70 border border-white/10 overflow-hidden transition-all">
+              <button type="button" class="faq-btn w-full p-6 text-left flex items-center justify-between gap-4 font-semibold text-[16px] text-cream hover:text-volt transition-colors" aria-expanded="false">
+                <span>Will there be a replay if I miss the 7:00 PM EST broadcast?</span>
+                <iconify-icon icon="lucide:plus" class="faq-icon text-volt text-xl shrink-0 transition-transform duration-200"></iconify-icon>
+              </button>
+              <div class="faq-answer hidden px-6 pb-6 text-cream/70 text-[14px] leading-relaxed border-t border-white/5 pt-4">
+                According to the vendor's official launch schedule, there is no guaranteed replay that includes the launch-specific bonus package, free software copies, and live giveaway prizes. We strongly encourage attending live at 7:00 PM EST to ensure eligibility for all event perks.
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="faq-item rounded-xl bg-moss/70 border border-white/10 overflow-hidden transition-all">
+              <button type="button" class="faq-btn w-full p-6 text-left flex items-center justify-between gap-4 font-semibold text-[16px] text-cream hover:text-volt transition-colors" aria-expanded="false">
+                <span>Do I need coding or prior marketing experience?</span>
+                <iconify-icon icon="lucide:plus" class="faq-icon text-volt text-xl shrink-0 transition-transform duration-200"></iconify-icon>
+              </button>
+              <div class="faq-answer hidden px-6 pb-6 text-cream/70 text-[14px] leading-relaxed border-t border-white/5 pt-4">
+                Not at all. The entire training is structured step-by-step for complete beginners and busy agencies. You will see how modern AI systems handle content assembly, search discovery, and campaign diagnostics without writing code or making cold calls.
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="faq-item rounded-xl bg-moss/70 border border-white/10 overflow-hidden transition-all">
+              <button type="button" class="faq-btn w-full p-6 text-left flex items-center justify-between gap-4 font-semibold text-[16px] text-cream hover:text-volt transition-colors" aria-expanded="false">
+                <span>What happens when I click "Save Your Free Seat"?</span>
+                <iconify-icon icon="lucide:plus" class="faq-icon text-volt text-xl shrink-0 transition-transform duration-200"></iconify-icon>
+              </button>
+              <div class="faq-answer hidden px-6 pb-6 text-cream/70 text-[14px] leading-relaxed border-t border-white/5 pt-4">
+                You will be redirected straight to the official BuzzFarmsAI event registration page hosted on the vendor platform. Enter your email address to confirm your attendance and claim the bonus tools.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. FINAL CENTERED CTA SECTION -->
+  <section class="grain relative border-t border-white/10 py-28 md:py-36 text-center overflow-hidden">
+    <!-- Soft Volt Glow -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+      <div class="w-[500px] md:w-[700px] h-[300px] bg-volt/10 blur-[130px] rounded-full"></div>
+    </div>
+
+    <div class="max-w-[1320px] mx-auto px-5 md:px-8 relative z-10">
+      <div class="text-volt font-mono text-[13px] tracking-wider font-semibold uppercase mb-4">
+        (One-Time Broadcast / 05)
+      </div>
+
+      <h2 class="display text-[clamp(2.8rem,10vw,8.5rem)] text-cream">
+        <div>RESERVE YOUR</div>
+        <div>
+          FREE <span class="script-accent text-volt" style="font-size:0.65em;text-transform:none">seat</span> TODAY.
+        </div>
+      </h2>
+
+      <p class="archivo-tight text-[18px] md:text-[21px] text-cream/80 max-w-2xl mx-auto my-8 font-normal md:font-medium">
+        Broadcast takes place <strong class="text-cream font-bold">Monday, Nov 23 at 7:00 PM EST</strong>. Secure your place now to unlock the live demonstration, attendee giveaways, and 2 free AI bonus tools.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://jvz7.com/c/3657033/456885" class="pill-btn w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full bg-volt text-forest font-extrabold text-[15px] md:text-[16px] px-9 py-5 uppercase tracking-wider hover:bg-white hover:text-forest transition-all js-affiliate-cta shadow-[0_12px_32px_rgba(226,255,0,0.32)]" data-cta-location="final_centered_cta" target="_blank" rel="noopener sponsored">
+          <span>Continue To Official Free Registration</span>
+          <iconify-icon icon="lucide:arrow-up-right" class="text-xl stroke-[2.5]"></iconify-icon>
+        </a>
+      </div>
+
+      <div class="mt-8 text-[12px] text-cream/50">
+        Limited digital room capacity · Free registration ends when session starts
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. 4-COLUMN FOOTER -->
+  <footer class="border-t border-white/10 bg-pine py-16 text-[13px] text-cream/70">
+    <div class="max-w-[1320px] mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-white/10">
+        
+        <!-- Col 1: Brand & Status (5 cols) -->
+        <div class="md:col-span-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-6 h-6 rounded-full bg-volt flex items-center justify-center">
+                <div class="w-2 h-2 bg-forest transform rotate-45"></div>
+              </div>
+              <span class="archivo-tight text-cream text-[17px] tracking-tight">
+                PICKORACHOICE<span class="text-volt">.</span>
+              </span>
+            </div>
+            <p class="text-cream/60 text-[13px] leading-relaxed max-w-sm mb-6">
+              Independent promotional analysis and event preview for the BuzzFarmsAI live online workshop hosted by Ben Murray and Abhi Dwivedi.
+            </p>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-forest border border-white/10 text-[12px] text-cream/80 w-fit">
+            <span class="w-2 h-2 rounded-full bg-volt animate-pulse"></span>
+            <span>Live Event: Monday, Nov 23 · 7:00 PM EST</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links (2 cols) -->
+        <div class="md:col-span-2">
+          <div class="text-volt font-mono text-[11px] uppercase tracking-widest font-bold mb-4">
+            Navigation
+          </div>
+          <ul class="space-y-2.5">
+            <li><a href="#overview" class="hover:text-volt transition-colors">Overview</a></li>
+            <li><a href="#bonuses" class="hover:text-volt transition-colors">Bonuses</a></li>
+            <li><a href="#agenda" class="hover:text-volt transition-colors">Live Agenda</a></li>
+            <li><a href="#reviews" class="hover:text-volt transition-colors">Reviews</a></li>
+            <li><a href="#faq" class="hover:text-volt transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal Modals (2 cols) -->
+        <div class="md:col-span-2">
+          <div class="text-volt font-mono text-[11px] uppercase tracking-widest font-bold mb-4">
+            Legal &amp; Policy
+          </div>
+          <ul class="space-y-2.5">
+            <li><button type="button" class="hover:text-volt transition-colors text-left" data-legal="privacy">Privacy Policy</button></li>
+            <li><button type="button" class="hover:text-volt transition-colors text-left" data-legal="terms">Terms of Service</button></li>
+            <li><button type="button" class="hover:text-volt transition-colors text-left" data-legal="disclaimer">Affiliate &amp; Earnings Disclaimer</button></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Affiliate & Non-Affiliation Notice (3 cols) -->
+        <div class="md:col-span-3">
+          <div class="text-volt font-mono text-[11px] uppercase tracking-widest font-bold mb-4">
+            Disclosure
+          </div>
+          <p class="text-[12px] text-cream/60 leading-relaxed mb-3">
+            PickOrAChoice.com is an independent affiliate promotional partner page. If you register or purchase through outbound links, we may receive compensation at no extra charge to you.
+          </p>
+          <p class="text-[11px] text-cream/45 leading-relaxed">
+            This site is not affiliated with or endorsed by Google LLC, YouTube, or Meta Platforms, Inc. All trademarks belong to their respective holders.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Copyright & Location -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-cream/45">
+        <div>&copy; 2026 PickOrAChoice.com. All rights reserved. Independent Promotional Guide.</div>
+        <div class="font-mono text-[11px] text-volt/80">https://pickorachoice.com/buzzfarmsai</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 10. STICKY MOBILE CTA BAR -->
+  <aside class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-forest/95 backdrop-blur-xl border-t border-white/10 px-4 py-3 flex items-center justify-between gap-3 shadow-2xl" aria-label="Mobile Registration Action">
+    <div class="flex flex-col">
+      <span class="text-[10px] uppercase font-bold tracking-wider text-volt">Live: Nov 23 · 7 PM EST</span>
+      <span class="text-[12px] font-semibold text-cream">Free Seat + 2 AI Bonuses</span>
+    </div>
+    <a href="https://jvz7.com/c/3657033/456885" class="pill-btn rounded-full bg-volt text-forest font-bold text-[12px] uppercase tracking-wider px-4 py-2.5 inline-flex items-center gap-1.5 shrink-0 js-affiliate-cta" data-cta-location="sticky_mobile" target="_blank" rel="noopener sponsored">
+      <span>Save Seat</span>
+      <iconify-icon icon="lucide:arrow-right" class="text-sm stroke-[2.5]"></iconify-icon>
+    </a>
+  </aside>
+
+  <!-- BENEFITS POP-UP MODAL (#benefitsModal) -->
+  <div class="modal-overlay" id="benefitsModal" role="dialog" aria-modal="true" aria-labelledby="benefitsModalTitle">
+    <div class="modal-box relative w-full max-w-lg bg-moss border border-volt/40 rounded-2xl p-6 md:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.85)] max-h-[92vh] overflow-y-auto">
+      
+      <button type="button" id="closeBenefitsModal" class="absolute top-4 right-4 w-8 h-8 rounded-full border border-white/10 bg-forest/60 text-cream/70 hover:text-volt flex items-center justify-center transition-colors" aria-label="Close modal">
+        <iconify-icon icon="lucide:x" class="text-lg"></iconify-icon>
+      </button>
+
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-volt/10 border border-volt/30 text-volt text-[11px] font-mono uppercase tracking-wider mb-3">
+        <iconify-icon icon="lucide:gift" class="text-xs"></iconify-icon>
+        <span>Complimentary Event Bonuses</span>
+      </div>
+
+      <h3 id="benefitsModalTitle" class="archivo-tight text-[22px] md:text-[24px] text-cream mb-2">
+        Unlock Everything Included With Your Free Seat
+      </h3>
+      
+      <p class="text-[13px] text-cream/70 mb-5 leading-relaxed">
+        Reserve your free spot for Monday, Nov 23 at 7:00 PM EST and receive instant eligibility for these exclusive bonuses:
+      </p>
+
+      <ul class="space-y-3 mb-6 text-[13px] text-cream/85">
+        <li class="flex items-start gap-2.5">
+          <iconify-icon icon="lucide:check-circle-2" class="text-volt text-lg shrink-0 mt-0.5"></iconify-icon>
+          <span><strong class="text-cream font-semibold">Live AI Living Sites Demo:</strong> Watch self-improving sites spot buyer intent and build campaigns live.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <iconify-icon icon="lucide:check-circle-2" class="text-volt text-lg shrink-0 mt-0.5"></iconify-icon>
+          <span><strong class="text-cream font-semibold">Free Bonus #1: Local Client Butter AI:</strong> Pinpoint local businesses looking to purchase digital marketing services without cold calling.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <iconify-icon icon="lucide:check-circle-2" class="text-volt text-lg shrink-0 mt-0.5"></iconify-icon>
+          <span><strong class="text-cream font-semibold">Free Bonus #2: Million Dollar Affiliate Analyzer:</strong> Run diagnostic checks on affiliate campaigns to maximize conversion efficiency.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <iconify-icon icon="lucide:check-circle-2" class="text-volt text-lg shrink-0 mt-0.5"></iconify-icon>
+          <span><strong class="text-cream font-semibold">Live Attendee Giveaways:</strong> Eligibility for free software licenses and launch prizes awarded during the live broadcast.</span>
+        </li>
+      </ul>
+
+      <div class="border-t border-white/10 pt-5">
+        <a href="https://jvz7.com/c/3657033/456885" class="pill-btn w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-volt text-forest font-extrabold text-[14px] py-4 uppercase tracking-wider hover:bg-white transition-all js-affiliate-cta" data-cta-location="benefits_modal_btn" target="_blank" rel="noopener sponsored">
+          <span>Continue To Free Registration</span>
+          <iconify-icon icon="lucide:arrow-up-right" class="text-lg stroke-[2.5]"></iconify-icon>
+        </a>
+        <p class="text-[11px] text-center text-cream/50 mt-3 font-medium">
+          Nov 23 at 7:00 PM EST · No replay for this promotional bonus package.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEGAL MODAL (#legalModal) -->
+  <div class="modal-overlay" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle">
+    <div class="modal-box relative w-full max-w-xl bg-moss border border-white/15 rounded-2xl p-6 md:p-8 shadow-2xl max-h-[88vh] overflow-y-auto">
+      
+      <button type="button" id="closeLegalModal" class="absolute top-4 right-4 w-8 h-8 rounded-full border border-white/10 bg-forest/60 text-cream/70 hover:text-volt flex items-center justify-center transition-colors" aria-label="Close legal modal">
+        <iconify-icon icon="lucide:x" class="text-lg"></iconify-icon>
+      </button>
+
+      <h3 id="legalModalTitle" class="archivo-tight text-[22px] text-cream mb-4 border-b border-white/10 pb-3">
+        Legal Information
+      </h3>
+
+      <div id="legalModalBody" class="text-[13px] text-cream/80 leading-relaxed space-y-4">
+        <!-- Dynamically filled by JS -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GDPR / LGPD COOKIE CONSENT BANNER (#cookieBanner) -->
+  <div id="cookieBanner" class="fixed bottom-20 md:bottom-6 left-4 right-4 max-w-xl mx-auto bg-pine border border-white/15 rounded-2xl p-4 md:p-5 shadow-2xl z-50 hidden flex-col sm:flex-row items-center justify-between gap-4 backdrop-blur-md" role="region" aria-label="Cookie consent banner">
+    <p class="text-[12px] text-cream/80 leading-relaxed">
+      We use cookies and telemetry parameters to analyze traffic and measure ad performance in compliance with GDPR and LGPD.
+    </p>
+    <div class="flex items-center gap-2.5 shrink-0 w-full sm:w-auto justify-end">
+      <button type="button" id="declineCookies" class="px-4 py-2 rounded-full border border-white/20 text-cream/70 text-[12px] font-medium hover:text-white transition-colors">
+        Decline
+      </button>
+      <button type="button" id="acceptCookies" class="px-5 py-2 rounded-full bg-volt text-forest text-[12px] font-bold uppercase tracking-wider hover:bg-white transition-colors">
+        Accept
+      </button>
+    </div>
+  </div>
+
+  <!-- VANILLA JS CONVERSION & TRACKING ENGINE -->
+  <script>
+    (function () {
+      "use strict";
+
+      // ==========================================
+      // TRACKING & CAMPAIGN CONSTANTS
+      // ==========================================
+      const AFFILIATE_URL_ACTIVE = "https://jvz7.com/c/3657033/456885";
+      const GA4_ID = "G-XXXXXXXXXX";
+      const GOOGLE_ADS_ID = "AW-XXXXXXXXXX";
+      const GOOGLE_ADS_CONVERSION_LABEL = "CONVERSION_LABEL";
+      const SHEETS_WEBHOOK_URL = ""; // Optional Google Sheets Webhook
+
+      // Event target: Monday, Nov 23 at 7:00 PM EST (UTC-5)
+      const EVENT_TIMESTAMP = new Date("2026-11-23T19:00:00-05:00").getTime();
+
+      // ==========================================
+      // 1. JVZOO-SAFE TID GENERATOR (MAX 22 CHARS)
+      // ==========================================
+      function generateCleanTid() {
+        try {
+          const cached = sessionStorage.getItem("bf_tid");
+          if (cached && cached.length <= 22) {
+            return cached;
+          }
+
+          const urlParams = new URLSearchParams(window.location.search);
+          const gclid = urlParams.get("gclid");
+          const utmTerm = urlParams.get("utm_term");
+          const utmCampaign = urlParams.get("utm_campaign");
+          const utmSource = urlParams.get("utm_source");
+
+          let safeTid = "";
+
+          if (gclid) {
+            // Compress long gclid into 32-bit integer string + short timestamp
+            let hash = 0;
+            for (let i = 0; i < gclid.length; i++) {
+              hash = ((hash << 5) - hash) + gclid.charCodeAt(i);
+              hash |= 0;
+            }
+            const gHex = Math.abs(hash).toString(36);
+            safeTid = ("g_" + gHex + "_" + Date.now().toString(36)).slice(0, 22);
+          } else if (utmTerm || utmCampaign || utmSource) {
+            const raw = (utmTerm || utmCampaign || utmSource || "").replace(/[^a-zA-Z0-9_-]/g, "");
+            safeTid = ("u_" + raw + "_" + Date.now().toString(36).slice(-4)).slice(0, 22);
+          } else {
+            safeTid = ("poc_" + Math.random().toString(36).substring(2, 7) + Date.now().toString(36).slice(-4)).slice(0, 22);
+          }
+
+          sessionStorage.setItem("bf_tid", safeTid);
+          return safeTid;
+        } catch (e) {
+          return "poc_std";
+        }
+      }
+
+      const currentTid = generateCleanTid();
+      const separator = AFFILIATE_URL_ACTIVE.includes("?") ? "&" : "?";
+      const finalAffiliateUrl = `${AFFILIATE_URL_ACTIVE}${separator}tid=${encodeURIComponent(currentTid)}`;
+
+      // ==========================================
+      // 2. DISPATCH ANALYTICS & WEBHOOK EVENTS
+      // ==========================================
+      function trackEvent(eventName, eventParams) {
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push(Object.assign({ event: eventName }, eventParams));
+          if (typeof gtag === "function") {
+            gtag("event", eventName, eventParams);
+          }
+        } catch (err) {
+          console.warn("Analytics error:", err);
+        }
+      }
+
+      function logToWebhook(ctaLocation) {
+        if (!SHEETS_WEBHOOK_URL || !navigator.sendBeacon) return;
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const payload = JSON.stringify({
+            timestamp: new Date().toISOString(),
+            tid: currentTid,
+            gclid: urlParams.get("gclid") || "",
+            utm_term: urlParams.get("utm_term") || "",
+            utm_campaign: urlParams.get("utm_campaign") || "",
+            utm_source: urlParams.get("utm_source") || "",
+            cta_location: ctaLocation,
+            device: /Mobi|Android/i.test(navigator.userAgent) ? "mobile" : "desktop"
+          });
+          navigator.sendBeacon(SHEETS_WEBHOOK_URL, new Blob([payload], { type: "application/json" }));
+        } catch (e) {}
+      }
+
+      // Wire up all CTA elements
+      document.querySelectorAll(".js-affiliate-cta").forEach(function (ctaLink) {
+        ctaLink.href = finalAffiliateUrl;
+        ctaLink.addEventListener("click", function () {
+          const location = ctaLink.getAttribute("data-cta-location") || "general_cta";
+          
+          trackEvent("cta_affiliate_click", {
+            cta_location: location,
+            tid: currentTid,
+            destination: AFFILIATE_URL_ACTIVE
+          });
+
+          if (typeof gtag === "function" && GOOGLE_ADS_ID && GOOGLE_ADS_CONVERSION_LABEL) {
+            gtag("event", "conversion", {
+              send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`
+            });
+          }
+
+          logToWebhook(location);
+        });
+      });
+
+      // ==========================================
+      // 3. COUNTDOWN TIMER SCRIPT
+      // ==========================================
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = EVENT_TIMESTAMP - now;
+        const container = document.getElementById("countdownTimer");
+
+        if (!container) return;
+
+        if (diff <= 0) {
+          container.innerHTML = '<span class="text-volt px-3 py-1 bg-forest border border-volt/30 rounded-lg uppercase tracking-wider font-bold">LIVE NOW / ACCESS OPEN</span>';
+          return;
+        }
+
+        const totalHours = Math.floor(diff / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const elH = document.getElementById("cd-hours");
+        const elM = document.getElementById("cd-mins");
+        const elS = document.getElementById("cd-secs");
+
+        if (elH) elH.textContent = String(totalHours).padStart(2, "0") + "h";
+        if (elM) elM.textContent = String(mins).padStart(2, "0") + "m";
+        if (elS) elS.textContent = String(secs).padStart(2, "0") + "s";
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // ==========================================
+      // 4. BENEFITS POP-UP MODAL (2.5s / EXIT / MANUAL)
+      // ==========================================
+      const benefitsModal = document.getElementById("benefitsModal");
+      const closeBenefitsBtn = document.getElementById("closeBenefitsModal");
+      const openModalManualBtn = document.getElementById("openModalManual");
+      let modalHasTriggered = false;
+
+      function showBenefitsModal(triggerType) {
+        if (!benefitsModal) return;
+        benefitsModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+        trackEvent("popup_open", { trigger: triggerType });
+      }
+
+      function hideBenefitsModal() {
+        if (!benefitsModal) return;
+        benefitsModal.classList.remove("active");
+        document.body.style.overflow = "";
+        trackEvent("popup_close", {});
+      }
+
+      // Automatic 2.5s timer (once per session)
+      setTimeout(function () {
+        if (!modalHasTriggered && !sessionStorage.getItem("bf_modal_shown")) {
+          modalHasTriggered = true;
+          sessionStorage.setItem("bf_modal_shown", "1");
+          showBenefitsModal("timer_2_5s");
+        }
+      }, 2500);
+
+      // Desktop Exit-Intent
+      document.addEventListener("mouseleave", function (e) {
+        if (e.clientY <= 5 && !modalHasTriggered && !sessionStorage.getItem("bf_modal_shown")) {
+          modalHasTriggered = true;
+          sessionStorage.setItem("bf_modal_shown", "1");
+          showBenefitsModal("exit_intent");
+        }
+      });
+
+      if (openModalManualBtn) {
+        openModalManualBtn.addEventListener("click", function () {
+          showBenefitsModal("manual_button");
+        });
+      }
+
+      if (closeBenefitsBtn) {
+        closeBenefitsBtn.addEventListener("click", hideBenefitsModal);
+      }
+
+      benefitsModal.addEventListener("click", function (e) {
+        if (e.target === benefitsModal) {
+          hideBenefitsModal();
+        }
+      });
+
+      // ==========================================
+      // 5. FAQ ACCORDION
+      // ==========================================
+      document.querySelectorAll(".faq-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const item = btn.closest(".faq-item");
+          const isExpanded = btn.getAttribute("aria-expanded") === "true";
+          
+          // Toggle current
+          btn.setAttribute("aria-expanded", String(!isExpanded));
+          item.classList.toggle("open");
+
+          trackEvent("faq_toggle", {
+            question: btn.textContent.trim().slice(0, 60),
+            state: !isExpanded ? "opened" : "closed"
+          });
+        });
+      });
+
+      // ==========================================
+      // 6. COOKIE CONSENT BANNER (GDPR / LGPD)
+      // ==========================================
+      const cookieBanner = document.getElementById("cookieBanner");
+      const acceptBtn = document.getElementById("acceptCookies");
+      const declineBtn = document.getElementById("declineCookies");
+
+      if (cookieBanner && !localStorage.getItem("bf_cookie_consent")) {
+        cookieBanner.classList.remove("hidden");
+        cookieBanner.classList.add("flex");
+      }
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          localStorage.setItem("bf_cookie_consent", "accepted");
+          cookieBanner.classList.add("hidden");
+          cookieBanner.classList.remove("flex");
+          trackEvent("cookie_consent", { status: "accepted" });
+        });
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener("click", function () {
+          localStorage.setItem("bf_cookie_consent", "declined");
+          cookieBanner.classList.add("hidden");
+          cookieBanner.classList.remove("flex");
+          trackEvent("cookie_consent", { status: "declined" });
+        });
+      }
+
+      // ==========================================
+      // 7. LEGAL POLICY MODALS
+      // ==========================================
+      const legalModal = document.getElementById("legalModal");
+      const legalModalTitle = document.getElementById("legalModalTitle");
+      const legalModalBody = document.getElementById("legalModalBody");
+      const closeLegalBtn = document.getElementById("closeLegalModal");
+
+      const policyDocuments = {
+        privacy: {
+          title: "Privacy Policy",
+          body: `
+            <p><strong>Effective Date:</strong> November 2026</p>
+            <p>PickOrAChoice.com is committed to protecting your privacy in full compliance with GDPR, LGPD, and CCPA standards. This promotional presell page functions as an informational overview for the third-party BuzzFarmsAI event.</p>
+            <p><strong>Data Collection & Analytics:</strong> We do not collect or store sensitive personal information on this landing page. We utilize standard anonymized telemetry (such as Google Analytics and Google Ads tags) to evaluate visitor traffic, device categories, and outbound referral clicks.</p>
+            <p><strong>Third-Party Vendor Links:</strong> When you click outbound buttons to reserve your seat or purchase products, you are directed to official vendor platforms (such as JVZoo and BuzzFarmsAI). Any personal data you submit there is managed strictly in accordance with their respective privacy policies.</p>
+          `
+        },
+        terms: {
+          title: "Terms of Service",
+          body: `
+            <p><strong>Agreement to Terms:</strong> By browsing this promotional portal, you acknowledge and agree that PickOrAChoice.com operates strictly as an independent marketing affiliate and informational publisher.</p>
+            <p><strong>Third-Party Event Terms:</strong> The BuzzFarmsAI workshop, its schedule, access credentials, software products, and bonus tools are hosted, developed, and maintained entirely by the official vendor. PickOrAChoice.com makes no warranties regarding uninterrupted access or specific third-party tool configurations.</p>
+            <p><strong>Intellectual Property:</strong> All product names, logos, and trademarks mentioned on this page belong to their respective owners and are referenced solely for identification and informational review purposes.</p>
+          `
+        },
+        disclaimer: {
+          title: "Affiliate & Earnings Disclaimer",
+          body: `
+            <p><strong>Affiliate Disclosure:</strong> PickOrAChoice.com is an independent promotional partner. If you click an outbound link on this page and subsequently register or purchase products from the vendor, we may earn an affiliate commission at zero additional cost to you.</p>
+            <p><strong>No Earnings Claims or Guarantees:</strong> In accordance with FTC guidelines and Google Ads compliance rules, we make NO claims or guarantees of income, dollar returns, or traffic generation. Any testimonials or case studies presented reflect individual results under specific conditions. Your personal outcomes will depend on your dedication, skill, marketplace factors, and execution.</p>
+            <p><strong>Non-Affiliation Notice:</strong> This website is not endorsed by, sponsored by, or affiliated with Google LLC, YouTube, or Meta Platforms, Inc.</p>
+          `
+        }
+      };
+
+      document.querySelectorAll("[data-legal]").forEach(function (trigger) {
+        trigger.addEventListener("click", function (e) {
+          e.preventDefault();
+          const docKey = trigger.getAttribute("data-legal");
+          const doc = policyDocuments[docKey];
+          if (doc && legalModal) {
+            legalModalTitle.textContent = doc.title;
+            legalModalBody.innerHTML = doc.body;
+            legalModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+          }
+        });
+      });
+
+      if (closeLegalBtn) {
+        closeLegalBtn.addEventListener("click", function () {
+          legalModal.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      }
+
+      if (legalModal) {
+        legalModal.addEventListener("click", function (e) {
+          if (e.target === legalModal) {
+            legalModal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        });
+      }
+
+      // Close modals on Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          hideBenefitsModal();
+          if (legalModal) {
+            legalModal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>
